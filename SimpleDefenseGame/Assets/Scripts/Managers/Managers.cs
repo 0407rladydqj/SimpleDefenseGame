@@ -6,7 +6,7 @@ public class Managers : MonoBehaviour
 {
     static Managers s_instance;//유일성이 보장된다
     static Managers Instance { get { Init(); return s_instance; }  }
-
+     
     #region Contents
     GameManagerEx _game = new GameManagerEx();
 

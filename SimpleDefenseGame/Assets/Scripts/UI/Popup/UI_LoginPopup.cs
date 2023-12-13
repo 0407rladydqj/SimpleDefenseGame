@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using UnityEngine.EventSystems;
+using UnityAsyncAwaitUtil;
+using Cysharp.Threading.Tasks;
+using System.Text;
 
 public class UI_LoginPopup : UI_Popup
 {
@@ -40,6 +43,11 @@ public class UI_LoginPopup : UI_Popup
         Managers.Sound.Play("High Noon", Define.Sound.Bgm);
     }
 
+    private async void Start()
+    {
+        await MyUniTask();
+    }
+
     public void SetRuneImage()
     {
         GetImage((int)Images.RuneImage).sprite = _runeAtlas[(int)Managers.Game.rune];
@@ -69,5 +77,18 @@ public class UI_LoginPopup : UI_Popup
     public void ChooseRuneButtonClicked(PointerEventData data)
     {
         Managers.UI.ShowPopupUI<UI_ChooseRune>();
+    }
+
+    StringBuilder myStringBuilder = new StringBuilder("UniTask running every ");
+    int i = 0;
+    private async UniTask MyUniTask()
+    {
+        while (true)
+        {
+            await UniTask.Delay(1000);  // Zero Allocation
+            i++;
+            Debug.Log(myStringBuilder.Append(i));
+            myStringBuilder.Remove(22, i.ToString().Length);
+        }
     }
 }
