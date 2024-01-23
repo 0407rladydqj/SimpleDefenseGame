@@ -43,10 +43,11 @@ public class UI_LoginPopup : UI_Popup
         Managers.Sound.Play("High Noon", Define.Sound.Bgm);
     }
 
+    /*
     private async void Start()
     {
         await MyUniTask();
-    }
+    }*/
 
     public void SetRuneImage()
     {

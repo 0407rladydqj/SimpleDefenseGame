@@ -14,6 +14,7 @@ public class MonsterController : BaseController
     {
         WorldObjectType = Define.WorldObject.Monster;
         _stat = gameObject.GetComponent<Stat>();
+        State = Define.State.Idle;
         _stat.SetStat((int)Managers.Game.gameLevel);
 
         if (gameObject.GetComponentInChildren<UI_HPBar>() == null)

@@ -98,7 +98,14 @@ public class PoolManager
     {
         if (_pool.ContainsKey(original.name) == false)
             CreatePool(original);
-        return _pool[original.name].Pop(parent);
+        Poolable pop = _pool[original.name].Pop(parent);
+        if (pop.GetComponent<BaseController>() == null)
+            return pop;
+        else
+        {
+            pop.GetComponent<BaseController>().Init();
+            return pop;
+        }
     }
 
     public GameObject GetOriginal(string name)
